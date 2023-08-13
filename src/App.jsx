@@ -5,13 +5,19 @@ import LoginForm from "./components/LoginForm";
 
 function App() {
   if (!localStorage.getItem("username")) return <LoginForm />;
+
   return (
     <ChatEngine
       height="100vh"
-      projectID="526addee-1232-4083-8cbf-11c877f7e1d9"
+      projectID={projectID}
       userName={localStorage.getItem("username")}
       userSecret={localStorage.getItem("password")}
       renderChatFeed={(chatAppProps) => <ChatFeed {...chatAppProps} />}
+      onNewMessage={() =>
+        new Audio(
+          "https://chat-engine-assets.s3.amazonaws.com/click.mp3"
+        ).play()
+      }
     />
   );
 }
